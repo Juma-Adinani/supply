@@ -166,7 +166,7 @@ class Authentication
         if (empty($password)) {
             $isErrorPersist = true;
             $_SESSION['error']['phone'] = true;
-            $_SESSION['message']['phone'] = 'Password filed  is required!';
+            $_SESSION['message']['phone'] = 'Password field  is required!';
         }
 
         if ($isErrorPersist != true) {

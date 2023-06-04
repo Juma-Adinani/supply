@@ -34,6 +34,26 @@ CREATE TABLE products(
     price DECIMAL(10, 2) NOT NULL
 );
 
+CREATE TABLE transport_companies(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE vehicles(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    plate_number VARCHAR(10) NOT NULL,
+    transport_company_id INT NOT NULL,
+    FOREIGN KEY (transport_company_id) REFERENCES transport_companies(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE transport_company_owners(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    transport_company_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE,
+    FOREIGN KEY (transport_company_id) REFERENCES transport_companies (id) ON UPDATE CASCADE
+);
+
 CREATE TABLE orders(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
@@ -41,7 +61,9 @@ CREATE TABLE orders(
     quantity INT NOT NULL,
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status ENUM ('PAID', 'NOT PAID') DEFAULT 'NOT PAID',
-    FOREIGN KEY (product_id) REFERENCES products (id),
+    vehicle_id INT NOT NULL,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles (id) ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE
 );
 
@@ -58,15 +80,8 @@ CREATE TABLE payments(
 CREATE TABLE transport_bookings (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    transporter_id INT NOT NULL,
+    vehicle_id INT NOT NULL,
     book_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE,
-    FOREIGN KEY (transporter_id) REFERENCES users (id) ON UPDATE CASCADE
-);
-
-CREATE TABLE vehicles(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    plate_number VARCHAR(10) NOT NULL,
-    transporter_id INT NOT NULL,
-    FOREIGN KEY (transporter_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles (id) ON UPDATE CASCADE
 );

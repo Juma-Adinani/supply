@@ -1,6 +1,6 @@
  <nav class="sidebar">
      <div class="logo d-flex justify-content-between">
-         <a href="index-2.html">
+         <a href="#">
              <!-- <img src="resources/img/logo.png" alt=""> -->
              <div style="color: #2daab8;" class="fw-bold lead">Mtibwa Supply Management</div>
          </a>
@@ -13,13 +13,10 @@
              <span>Dashboard</span>
          </li>
          <li class="mm-active">
-             <a class="has-arrow" href="#" aria-expanded="false">
-                 <img src="resources/img/menu-icon/1.svg" alt="">
+             <a class="has-arrow" href="./homepage.php">
+                 <i class="fa fa-home"></i>
                  <span>Dashboard</span>
              </a>
-             <ul>
-                 <li><a class="active" href="#">Home</a></li>
-             </ul>
          </li>
          <!-- <li class="side_menu_title">
              <span>Applications</span>
