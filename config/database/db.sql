@@ -60,28 +60,25 @@ CREATE TABLE orders(
     user_id INT NOT NULL,
     quantity INT NOT NULL,
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total_price DECIMAL(10, 2) NOT NULL,
     status ENUM ('PAID', 'NOT PAID') DEFAULT 'NOT PAID',
-    vehicle_id INT NOT NULL,
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles (id) ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (id) ON UPDATE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE payments(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    control_no INT NOT NULL,
-    amount INT NOT NULL,
+    control_no INT NOT NULL UNIQUE,
+    amount DECIMAL(10, 2) NULL,
     order_id INT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE,
     FOREIGN KEY (order_id) REFERENCES orders (id) ON UPDATE CASCADE
 );
 
 CREATE TABLE transport_bookings (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    order_id INT NOT NULL,
     vehicle_id INT NOT NULL,
     book_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON UPDATE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles (id) ON UPDATE CASCADE
 );

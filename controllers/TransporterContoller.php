@@ -43,10 +43,6 @@ class TransporterController
                     <td>' . $row['phone'] . '</td>
                     <td>' . $row['email'] . '</td>
                     <td>' . $row['company_name'] . '</td>
-                    <td>
-                        <a class="badge bg-primary">edit</a>&nbsp;
-                        <a class="badge bg-danger">delete</a>
-                    </td>
                 </tr>';
             }
         }
@@ -123,10 +119,6 @@ class TransporterController
                         <tr>
                             <td>' . $count . '</td>
                             <td>' . $row['company_name'] . '</td>
-                            <td>
-                                <a class="badge bg-primary">edit</a>&nbsp;
-                                <a class="badge bg-danger">delete</a>
-                            </td>
                         </tr>
                     ';
             }
@@ -169,10 +161,6 @@ class TransporterController
                         <tr>
                             <td>' . $count . '</td>
                             <td>' . $row['plate_number'] . '</td>
-                            <td>
-                                <a class="badge bg-primary">edit</a>&nbsp;
-                                <a class="badge bg-danger">delete</a>
-                            </td>
                         </tr>
                     ';
             }

@@ -1,7 +1,7 @@
 <?php
-include './layouts/DashLayoutAbove.php';
+require_once './layouts/DashLayoutAbove.php';
 
-if (!Authentication::isLoggedIn()) {
+if (Authentication::isLoggedIn() == false) {
     Util::redirectTo('login.php');
 }
 ?>

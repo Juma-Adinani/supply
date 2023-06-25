@@ -2,6 +2,7 @@
 <html lang="zxx">
 
 <?php
+session_set_cookie_params(0, '/', '', false, true);
 include './partials/all_includes.php';
 ?>
 

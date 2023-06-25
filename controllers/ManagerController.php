@@ -14,6 +14,12 @@ class ManagerController
         $sql = self::$db_con->query("SELECT count(*) as total FROM products");
         return mysqli_fetch_assoc($sql)['total'];
     }
+
+    public static function totalOrders($status)
+    {
+        $sql = self::$db_con->query("SELECT count(*) as total FROM orders WHERE status = '$status'");
+        return mysqli_fetch_assoc($sql)['total'];
+    }
 }
 
 ManagerController::init();

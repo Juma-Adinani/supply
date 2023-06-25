@@ -29,7 +29,6 @@ if (!Authentication::isLoggedIn() || !Authentication::isManager()) {
                             <th>Product name</th>
                             <th>Product description</th>
                             <th>Product Price</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -30,7 +30,6 @@ if (!Authentication::isLoggedIn() || !Authentication::isAdmin()) {
                             <th>Phone number</th>
                             <th>Email</th>
                             <th>Company name</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

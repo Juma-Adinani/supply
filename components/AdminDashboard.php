@@ -2,11 +2,11 @@
 
 if (Authentication::isAdmin()) {
     $dashboards = [
-        ['link' => '#', 'title' => 'Users', 'color' => 'green_color', 'total' => DashboardController::totalUsers()],
-        ['link' => '#', 'title' => 'Customers', 'color' => 'blue_color', 'total' => DashboardController::totalCustomers()],
+        // ['link' => '#', 'title' => 'Users', 'color' => 'green_color', 'total' => DashboardController::totalUsers()],
+        // ['link' => '#', 'title' => 'Customers', 'color' => 'blue_color', 'total' => DashboardController::totalCustomers()],
         ['link' => './transporters.php', 'title' => 'Transporters', 'color' => 'red_color', 'total' => DashboardController::totalTransporters()],
-        ['link' => '#', 'title' => 'Orders', 'color' => 'yellow_color', 'total' => DashboardController::totalOrders()],
-        ['link' => '#', 'title' => 'Payments', 'color' => 'red_color', 'total' => DashboardController::totalPayments()],
+        // ['link' => '#', 'title' => 'Orders', 'color' => 'yellow_color', 'total' => DashboardController::totalOrders()],
+        // ['link' => '#', 'title' => 'Payments', 'color' => 'red_color', 'total' => DashboardController::totalPayments()],
         ['link' => './companies.php', 'title' => 'Transport Companies', 'color' => 'blue_color', 'total' => DashboardController::totalTransportCompanies()],
     ];
 }
@@ -20,12 +20,14 @@ if (Authentication::isTransporter()) {
 if (Authentication::isManager()) {
     $dashboards = [
         ['link' => './products.php', 'title' => 'Products', 'color' => 'yellow_color', 'total' => ManagerController::totalProducts()],
+        ['link' => './pending-orders.php', 'title' => 'Pending Orders', 'color' => 'green_color', 'total' => ManagerController::totalOrders('NOT PAID')],
+        ['link' => './verified-orders.php', 'title' => 'Verified Orders', 'color' => 'red_color', 'total' => ManagerController::totalOrders('PAID')],
     ];
 }
 
 if (Authentication::isCustomer()) {
     $dashboards = [
-        ['link' => './orders.php', 'title' => 'My Orders', 'color' => 'green_color', 'total' => CustomerController::totalOrders()],
+        ['link' => './customer-orders.php', 'title' => 'My Orders', 'color' => 'green_color', 'total' => CustomerController::totalOrders()],
     ];
 }
 

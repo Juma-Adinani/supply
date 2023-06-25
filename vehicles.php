@@ -27,7 +27,6 @@ if (!Authentication::isLoggedIn() || !Authentication::isTransporter()) {
                         <tr>
                             <th>#</th>
                             <th>Plate number</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

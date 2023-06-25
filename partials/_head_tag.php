@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Mttibwa Sugar Product Supply Management System | Easy access and ordering of products</title>
+    <title>Mtibwa Sugar Product Supply Management System | Easy access and ordering of products</title>
     <link rel="icon" href="resources/img/logo.png" type="image/png">
 
     <link rel="stylesheet" href="resources/css/bootstrap1.min.css" />

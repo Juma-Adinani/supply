@@ -1,24 +1,21 @@
 <?php
 include './layouts/DashLayoutAbove.php';
 
-if (!Authentication::isLoggedIn() || !Authentication::isAdmin()) {
+if (!Authentication::isLoggedIn() || !Authentication::isManager()) {
     Util::redirectTo('login.php');
 }
 ?>
 <div class="container">
     <?php
     if (isset($_POST['save'])) {
-        TransporterController::registerTransportCompany();
+        ProductController::registerProduct();
     }
     ?>
 </div>
 <div class="container">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h5 class="card-title">Transportation companies List</h5>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add tranpsort company
-            </button>
+            <h5 class="card-title">Customer Pending Orders</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,12 +23,14 @@ if (!Authentication::isLoggedIn() || !Authentication::isAdmin()) {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Company name</th>
+                            <th>Quantity ordered</th>
+                            <th>Total price</th>
+                            <th>Order date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        TransporterController::getAllTransportCompanies();
+                        ProductController::getOrders('NOT PAID');
                         ?>
                     </tbody>
                 </table>
@@ -46,17 +45,28 @@ if (!Authentication::isLoggedIn() || !Authentication::isAdmin()) {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Register Transport Companies</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Register product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="company" class="form-label">Company name</label>
-                            <input type="text" class="form-control" name="company" id="firstName" required placeholder="enter company name">
+                            <label for="name" class="form-label">product name</label>
+                            <input type="text" class="form-control" name="name" id="name" required placeholder="enter product name">
                             <div class="invalid-feedback">
-                                Please provide a valid company name.
+                                Please provide a valid product name.
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="description" class="form-label">Product description</label>
+                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="price" class="form-label">Product price</label>
+                            <input type="number" class="form-control" name="price" id="price" placeholder="enter price" step="0.2" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid last name.
                             </div>
                         </div>
                     </div>

@@ -25,10 +25,6 @@ class ProductController
                     <td>' . $row['name'] . '</td>
                     <td>' . $row['description'] . '</td>
                     <td> Tsh ' . number_format($row['price'], 0) . '</td>
-                    <td>
-                        <a class="badge bg-primary">edit</a>&nbsp;
-                        <a class="badge bg-danger">delete</a>
-                    </td>
                 </tr>';
             }
         }
@@ -49,6 +45,32 @@ class ProductController
             Helper::alert_message("danger", 'Failed to register product' . mysqli_error(self::$db_con));
         }
     }
+
+    public static function getOrders($status)
+    {
+        $sql  = self::$db_con->query("SELECT * FROM orders WHERE status = '" . $status . "'");
+        if (mysqli_num_rows($sql) == 0) {
+            echo '
+                    <tr>
+                        <td colspan="6">No available orders for now</td>
+                    </tr>
+                ';
+        } else {
+            $count = 0;
+            while ($row = mysqli_fetch_assoc($sql)) {
+                $count++;
+                echo '
+                    <tr>
+                        <td>' . $count . '</td>
+                        <td>' . $row['quantity'] . '</td>
+                        <td>' . $row['total_price'] . '</td>
+                        <td>' . $row['order_date'] . '</td>
+                    </tr>
+                ';
+            }
+        }
+    }
 }
+
 
 ProductController::init();
